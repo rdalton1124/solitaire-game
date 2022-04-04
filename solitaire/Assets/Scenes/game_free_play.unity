@@ -846,6 +846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64eeed8e02a5486ca72d501268aebd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tst: {fileID: 0}
+  cardPrefab: {fileID: 2635847657534102507, guid: 12980321f0fcd4219bfead2ca57deda1, type: 3}
   bSprite: {fileID: 0}
 --- !u!4 &755430093
 Transform:
