@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     public Sprite fSprite, bSprite; 
-    int value;
-    enum suites { hearts, diamonds, clubs, spades};
+    public int value;
+    enum suites {error, clubs, diamonds, hearts, spades};
     suites suite;
     bool isFaceUp;
     void Start()
@@ -18,14 +18,22 @@ public class Card : MonoBehaviour
     {
 
     }
-    public Card(Sprite fSprite)
+    /*
+    public Card(int suit, int value, Sprite fSprite)
     {
+        suite = (suites) suit;
+        this.value = value;
         this.fSprite = fSprite; 
     }
     public Card(Sprite fSprite, Sprite bSprite)
     {
         this.fSprite = fSprite;
         this.bSprite = bSprite;
+    }
+    */
+    public void setFSprite(Sprite f)
+    {
+        fSprite = f; 
     }
     public void flip()
     {
@@ -67,5 +75,24 @@ public class Card : MonoBehaviour
 
         else
             return false;
+    }
+    public void setValue(int v)
+    {
+        if (v >= 1 && v <= 13)
+        {
+            value = v; 
+        }
+    }
+    public void setSuite(int s)
+    {
+        s++; 
+        if(s >= 1 && s<= 4)
+        {
+            suite = (suites)s; 
+        }
+        else
+        {
+            suite = (suites)0; 
+        }
     }
 }
