@@ -33,7 +33,8 @@ public class Card : MonoBehaviour
     */
     public void setFSprite(Sprite f)
     {
-        fSprite = f; 
+        fSprite = f;
+    
     }
     public void flip()
     {

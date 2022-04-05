@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fSprite: {fileID: 0}
   bSprite: {fileID: 21300000, guid: f6e0d68baaafb4a52af47e7014931b90, type: 3}
+  value: 0
 --- !u!212 &2635847657534102518
 SpriteRenderer:
   m_ObjectHideFlags: 0

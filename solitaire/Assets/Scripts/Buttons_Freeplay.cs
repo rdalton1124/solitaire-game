@@ -9,7 +9,7 @@ public class Buttons_Freeplay : MonoBehaviour
     {
         
     }
-
+    int i;
     // Update is called once per frame
     void Update()
     {
