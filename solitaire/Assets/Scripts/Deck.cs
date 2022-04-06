@@ -11,19 +11,16 @@ public class Deck : MonoBehaviour
    // public Card tst; 
     public GameObject cardPrefab; 
     List<GameObject> cards = new List<GameObject>();
+    List<GameObject> drewCards = new List<GameObject>(); 
     public Sprite bSprite;
-
+    public Vector3 drawLocation; 
     private void Start()
     {
-     
-        //  string name;
-        //       List<string> dir = Directory.GetFiles("../solitaire/Assets/Test_Assets/cards/PNG/large").Where(file=>file.EndsWith("png")).ToList<String>();
 
-        //     foreach(string s in dir)
-        //   {
-        //     Debug.Log(s + "\n");
-        //}
-
+        Vector3 pos = this.transform.position;
+        drawLocation.x = pos.x - 3;
+        drawLocation.y = pos.y;
+        drawLocation.z = pos.z;
         for (int i = 0; i < 52; i++)
         {
             GameObject temp2;
@@ -32,43 +29,15 @@ public class Deck : MonoBehaviour
 
             var path = "../solitaire/Assets/Test_Assets/cards/PNG/large/";
             string file = (i + 1).ToString() + ".png";
-            float x, y;
             temp2.name = (i + 1).ToString();
             temp2.transform.parent = GameObject.Find("Deck").transform;
-            if (i < 12)
-            {
-                y = 4f;
-                x = -8.35f + (1.5f * i);
-            }
-            else if (i < 24)
-            {
-                y = 2f;
-                x = -8.35f + (1.5f * (i - 12));
-            }
-            else if (i < 36)
-            {
-                y = 0f;
-                x = -8.35f + (1.5f * (i - 24));
-            }
-            else if (i < 48)
-            {
-                y = -2f;
-                x = -8.35f + (1.5f * (i - 36));
-            }
-            else
-            {
-                y = -4f;
-                x = -8.35f + (1.5f * (i - 48));
-            }
-            temp2.transform.position = new Vector3(x, y, 0);
+            temp2.transform.position = temp2.transform.parent.position;
             temp2.GetComponent<Card>().setSuite((int)(i + 1) / 4);
 
             if ((i + 1) % 13 == 0)
                 temp2.GetComponent<Card>().setValue(13);
             else
                 temp2.GetComponent<Card>().setValue((i + 1) % 13);
-
-
 
             if (File.Exists(path + file))
             {
@@ -88,6 +57,13 @@ public class Deck : MonoBehaviour
         }
 
     }
+    public void draw()
+    {
+        cards.ElementAt(0).transform.position = drawLocation;
+        cards.ElementAt(0).GetComponent<Card>().flip();
+        drewCards.Add(cards.ElementAt(0));
+        cards.RemoveAt(0);
+    }
     public void shuffleTest()
     {
         int t0, t1;
@@ -106,7 +82,7 @@ public class Deck : MonoBehaviour
             
         }
         cards.Reverse();
-        printCards();
+      //  printCards();
     }
     public void printCards()
     {
