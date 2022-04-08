@@ -67,7 +67,11 @@ public class Card : MonoBehaviour
         else
             return true; 
     }
-    public bool canStackOnTableu(Card other)
+    public int getValue()
+    {
+        return value; 
+    }
+    public bool canStackOnFoundation(Card other)
     {
         if (value == 1)
             return true;

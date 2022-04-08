@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
-public class Deck : MonoBehaviour
+public class Deck : MonoBehaviour 
 {
    // public Card tst; 
     public GameObject cardPrefab; 
@@ -76,6 +77,8 @@ public class Deck : MonoBehaviour
         { 
             cards.ElementAt(0).transform.position = drawLocation;
             cards.ElementAt(0).GetComponent<Card>().flip();
+            if(drewCards.Count >= 1)
+                drewCards.ElementAt(drewCards.Count - 1).GetComponent<Renderer>().enabled = false;
             drewCards.Add(cards.ElementAt(0));
             cards.RemoveAt(0);
         }
@@ -84,9 +87,11 @@ public class Deck : MonoBehaviour
             for (int i = 0; i < 52; i++)
             {
                 cards.Add(drewCards.ElementAt(i));
+                cards.ElementAt(i).GetComponent<Renderer>().enabled = true; 
                 cards.ElementAt(i).transform.position = new Vector3(drawLocation.x + 3, drawLocation.y, drawLocation.z); 
             }
-            drewCards.Clear(); 
+            drewCards.Clear();
+            flip(); 
         }
     }
     public void shuffleTest()
@@ -107,7 +112,7 @@ public class Deck : MonoBehaviour
             
         }
         cards.Reverse();
-        printCards();
+      //  printCards();
     }
     public void printCards()
     {
@@ -142,6 +147,7 @@ public class Deck : MonoBehaviour
             cards.ElementAt(i).transform.position = new Vector3(x, y); 
         }
     }
+    
     public void flip()
     {
         foreach(GameObject c in cards)
@@ -158,5 +164,9 @@ public class Deck : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnMouseDown()
+    {
+        draw();
     }
 }
