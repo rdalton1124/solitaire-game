@@ -34,6 +34,7 @@ public class Card : MonoBehaviour
     public void setFSprite(Sprite f)
     {
         fSprite = f;
+       // fSprite.texture.Resize(64, 64);
     
     }
     public void flip()
