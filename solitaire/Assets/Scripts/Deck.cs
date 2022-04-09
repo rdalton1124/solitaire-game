@@ -4,16 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
-public class Deck : MonoBehaviour
+public class Deck : MonoBehaviour 
 {
    // public Card tst; 
     public GameObject cardPrefab; 
     List<GameObject> cards = new List<GameObject>();
     List<GameObject> drewCards = new List<GameObject>(); 
     public Sprite bSprite;
-    public Vector3 drawLocation; 
+    public Vector3 drawLocation;
     private void Start()
     {
 
@@ -27,7 +28,8 @@ public class Deck : MonoBehaviour
 
             temp2 = Instantiate(cardPrefab);
 
-            var path = "../solitaire/Assets/Test_Assets/cards/PNG/large/";
+            var path = "../solitaire/Assets/Cards/"; 
+            var path2 = "../solitaire/Assets/Test_Assets/cards/PNG/large/";
             string file = (i + 1).ToString() + ".png";
             temp2.name = (i + 1).ToString();
             temp2.transform.parent = GameObject.Find("Deck").transform;
@@ -46,9 +48,21 @@ public class Deck : MonoBehaviour
                 Texture2D txt1 = new Texture2D(2, 2);
                 txt1.LoadImage(bytes);
                 Sprite nw = Sprite.Create(txt1, new Rect(0, 0, txt1.width, txt1.height), new Vector2(.5f, .5f));
+                
                 nw.name = (i + 1).ToString();
                 temp2.GetComponent<Card>().setFSprite(nw);
-               cards.Insert(i, temp2);
+                cards.Add(temp2);
+            }
+            else
+            {
+                byte[] bytes;
+                bytes = File.ReadAllBytes(path2 + file);
+                Texture2D txt = new Texture2D(2, 2);
+                txt.LoadImage(bytes);
+                Sprite nw = Sprite.Create(txt, new Rect(0, 0, txt.width, txt.height), new Vector2(.5f, .5f));
+                nw.name = (i + 1).ToString();
+                temp2.GetComponent<Card>().setFSprite(nw);
+                cards.Add(temp2);
             }
             //temp2.GetComponent<Card>().flip();
             //temp2 = Instantiate(new GameObject());
@@ -59,10 +73,26 @@ public class Deck : MonoBehaviour
     }
     public void draw()
     {
-        cards.ElementAt(0).transform.position = drawLocation;
-        cards.ElementAt(0).GetComponent<Card>().flip();
-        drewCards.Add(cards.ElementAt(0));
-        cards.RemoveAt(0);
+        if(cards.Count > 0)
+        { 
+            cards.ElementAt(0).transform.position = drawLocation;
+            cards.ElementAt(0).GetComponent<Card>().flip();
+            if(drewCards.Count >= 1)
+                drewCards.ElementAt(drewCards.Count - 1).GetComponent<Renderer>().enabled = false;
+            drewCards.Add(cards.ElementAt(0));
+            cards.RemoveAt(0);
+        }
+        else
+        {
+            for (int i = 0; i < 52; i++)
+            {
+                cards.Add(drewCards.ElementAt(i));
+                cards.ElementAt(i).GetComponent<Renderer>().enabled = true; 
+                cards.ElementAt(i).transform.position = new Vector3(drawLocation.x + 3, drawLocation.y, drawLocation.z); 
+            }
+            drewCards.Clear();
+            flip(); 
+        }
     }
     public void shuffleTest()
     {
@@ -95,7 +125,7 @@ public class Deck : MonoBehaviour
                 x = -8.35f + (1.5f * i);
             }
             else if (i < 24)
-            {
+            { 
                 y = 2f;
                 x = -8.35f + (1.5f * (i - 12));
             }
@@ -117,6 +147,7 @@ public class Deck : MonoBehaviour
             cards.ElementAt(i).transform.position = new Vector3(x, y); 
         }
     }
+    
     public void flip()
     {
         foreach(GameObject c in cards)
@@ -133,5 +164,9 @@ public class Deck : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnMouseDown()
+    {
+        draw();
     }
 }

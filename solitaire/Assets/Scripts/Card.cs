@@ -34,6 +34,7 @@ public class Card : MonoBehaviour
     public void setFSprite(Sprite f)
     {
         fSprite = f;
+       // fSprite.texture.Resize(64, 64);
     
     }
     public void flip()
@@ -66,7 +67,11 @@ public class Card : MonoBehaviour
         else
             return true; 
     }
-    public bool canStackOnTableu(Card other)
+    public int getValue()
+    {
+        return value; 
+    }
+    public bool canStackOnFoundation(Card other)
     {
         if (value == 1)
             return true;
