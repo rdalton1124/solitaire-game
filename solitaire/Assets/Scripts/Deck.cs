@@ -36,7 +36,7 @@ public class Deck : MonoBehaviour
             temp2.name = (i + 1).ToString();
             temp2.transform.parent = GameObject.Find("Deck").transform;
             temp2.transform.position = temp2.transform.parent.position;
-            temp2.GetComponent<Card>().setSuite((int)(i + 1) / 4);
+            temp2.GetComponent<Card>().setSuite((int)((i + 1) / 13) + 1);
 
             if ((i + 1) % 13 == 0)
                 temp2.GetComponent<Card>().setValue(13);

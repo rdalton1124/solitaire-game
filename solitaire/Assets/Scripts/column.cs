@@ -19,6 +19,11 @@ public class column : MonoBehaviour
     {
         run.Add(card); 
     }
+    public void removeTopCards()
+    {
+        run.RemoveAt(run.Count - 1);
+        printCards();
+    }
     public void addCardFaceUp(Card card)
     {
         run.Add(card);
@@ -26,22 +31,35 @@ public class column : MonoBehaviour
     }
     public void printCards()
     {
-        float y = 0; 
-        for(int i = 0; i < run.Count; i++)
+        float y = 0;
+        for (int i = 0; i < run.Count; i++)
         {
             float x = run.ElementAt(i).transform.position.x;
             float z = 0f;
-            run.ElementAt(i).transform.position = new Vector3(x, y, z); 
-            y -= .1f; 
+            run.ElementAt(i).transform.position = new Vector3(x, y, z);
+            y -= .1f;
         }
         Vector3 pos = run.ElementAt(run.Count - 1).transform.position;
         pos.z = -1;
         run.ElementAt(run.Count - 1).transform.position = pos;
         pos.z = 0;
-        this.GetComponent<BoxCollider2D>().transform.position = pos; 
+        this.GetComponent<BoxCollider2D>().transform.position = pos;
     }
+    
     private void OnMouseDown()
     {
-        GameManager.setTempCard(run.ElementAt(run.Count - 1).gameObject); 
+        if (GameManager.isTempCardSet())
+        {
+            Debug.Log("card has been set"); 
+            if(GameManager.getTempCard().canStackOnRun(run.ElementAt(run.Count - 1)))
+            {
+                Debug.Log("I can stacj");
+                addCardFromDeal(GameManager.getTempCard());
+                GameManager.moveTempCard();
+                printCards(); 
+            }
+        }
+        else
+          GameManager.setTempCard(run.ElementAt(run.Count - 1).gameObject); 
     }
 }

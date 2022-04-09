@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameObject deck; 
+    public static GameObject deck, foundation, tableau; 
     static Card tempCard;
     static bool cardSet = false;
     void Start()
     {
-        
+        deck = GameObject.Find("Deck");
+        foundation = GameObject.Find("foundation");
+        tableau = GameObject.Find("runs");
     }
 
     // Update is called once per frame
@@ -33,10 +35,20 @@ public class GameManager : MonoBehaviour
     }
     public static void moveTempCard()
     {
-        Card tmp = deck.GetComponent<Deck>().getTopDrewCard();
-        if (tempCard.equalsCard(tmp))
+
+        if(tempCard.transform.parent == deck)
         {
-            deck.GetComponent<Deck>().removeTopDrewCard(); 
+            Debug.Log("Card is a from deck");
+            deck.GetComponent<Deck>().removeTopDrewCard();
+
+        }
+        else if(tempCard.transform.parent.parent == foundation)
+        {
+
+        }
+        else
+        {
+            tempCard.transform.parent.GetComponent<column>().removeTopCards(); 
         }
     }
     public static void removeTempCard()

@@ -23,6 +23,22 @@ public class foundation_stack : MonoBehaviour
     {
         
     }
+    void printCards()
+    {
+        if(stack.Count != 0)
+        {
+            Vector3 pos = this.transform.position;
+
+            for (int i = 0; i < stack.Count - 1; i ++ )
+            {
+                stack.ElementAt(i).transform.position = pos;
+                if (!stack.ElementAt(i).GetComponent<Card>().FaceUp())
+                    stack.ElementAt(i).GetComponent<Card>().flip(); 
+            }   
+            pos.z = -1;
+            stack.ElementAt(stack.Count - 1).transform.position = pos;
+        }
+    }
     void AddCard(GameObject card)
     {
         if(stack.Count == 0 && card.GetComponent<Card>().getValue() == 1)
@@ -39,10 +55,8 @@ public class foundation_stack : MonoBehaviour
         if (stack.Count != 0)
         {
             stack.ElementAt(stack.Count - 1).transform.position = this.transform.position;
-            stack.ElementAt(stack.Count - 1).GetComponent<Renderer>().enabled = true;
-            if (stack.Count >= 2)
-                stack.ElementAt(stack.Count - 2).GetComponent<Renderer>().enabled = false;
         }
         Debug.Log("Stack size = " + stack.Count.ToString());
+        printCards(); 
     }
 }

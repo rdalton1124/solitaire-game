@@ -45,19 +45,25 @@ public class Card : MonoBehaviour
     {
         if (suite == suites.hearts || suite == suites.diamonds)
             return true;
-        else
-            return false; 
-
+        else 
+           return false;
     }
     public bool canStackOnRun(Card other)
     {
-        if (other.value != value + 1)
-            return false;
-        else if (other.isRed() == isRed())
-            return false;
+        Debug.Log("Checking if card can stack on run");
+        if ((other.value == (value + 1)) && other.isRed() != isRed())
+            return true;
         else
-            return true; 
+        {
+            Debug.Log("Card cannot stack ");
+            Debug.Log("Card's value " + value.ToString());
+            Debug.Log("Card's suite " + suite.ToString());
+            Debug.Log("Other Card's value " + other.value.ToString());
+            Debug.Log("Other czards's suite " + other.suite.ToString()); 
+            return false;
+        }
     }
+    
     public int getValue()
     {
         return value; 
@@ -73,6 +79,10 @@ public class Card : MonoBehaviour
         else
             return false;
     }
+    public bool FaceUp()
+    {
+        return isFaceUp; 
+    }
     public void setValue(int v)
     {
         if (v >= 1 && v <= 13)
@@ -82,7 +92,7 @@ public class Card : MonoBehaviour
     }
     public void setSuite(int s)
     {
-        s++; 
+         
         if(s >= 1 && s<= 4)
         {
             suite = (suites)s; 
