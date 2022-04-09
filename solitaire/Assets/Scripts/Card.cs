@@ -18,19 +18,6 @@ public class Card : MonoBehaviour
     {
 
     }
-    /*
-    public Card(int suit, int value, Sprite fSprite)
-    {
-        suite = (suites) suit;
-        this.value = value;
-        this.fSprite = fSprite; 
-    }
-    public Card(Sprite fSprite, Sprite bSprite)
-    {
-        this.fSprite = fSprite;
-        this.bSprite = bSprite;
-    }
-    */
     public void setFSprite(Sprite f)
     {
         fSprite = f;
@@ -49,6 +36,10 @@ public class Card : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = fSprite;
             isFaceUp = true; 
         }
+    }
+    public bool equalsCard(Card other)
+    {
+        return (value == other.value) && (suite == other.suite); 
     }
     public bool isRed()
     {
@@ -73,10 +64,10 @@ public class Card : MonoBehaviour
     }
     public bool canStackOnFoundation(Card other)
     {
-        if (value == 1)
-            return true;
+        //if (value == 1)
+          //  return true;
 
-        else if ((other.value == (value - 1)) && other.suite == suite)
+        if ((other.value == (value - 1)) && other.suite == suite)
             return true;
 
         else

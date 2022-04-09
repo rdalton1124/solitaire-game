@@ -15,6 +15,8 @@ public class Deck : MonoBehaviour
     List<GameObject> drewCards = new List<GameObject>(); 
     public Sprite bSprite;
     public Vector3 drawLocation;
+    public GameObject drewObj;
+    public GameObject tableu;
     private void Start()
     {
 
@@ -71,14 +73,35 @@ public class Deck : MonoBehaviour
         }
 
     }
+    public void deal()
+    {
+        shuffleTest();
+        for(int i = 0; i < 7; i++)
+        {
+
+            for(int j = 0; j < i; j++)
+            {
+                tableu.transform.GetChild(i).GetComponent<column>().addCardFromDeal(cards.ElementAt(0).GetComponent<Card>());
+                cards.ElementAt(0).transform.position = tableu.transform.GetChild(i).transform.position;
+                cards.RemoveAt(0);
+            }
+            tableu.transform.GetChild(i).GetComponent<column>().addCardFaceUp(cards.ElementAt(0).GetComponent<Card>());
+            cards.ElementAt(0).transform.position = tableu.transform.GetChild(i).transform.position;
+            cards.RemoveAt(0);
+            tableu.transform.GetChild(i).GetComponent<column>().printCards(); 
+        }
+        draw(); 
+    }
     public void draw()
     {
         if(cards.Count > 0)
         { 
             cards.ElementAt(0).transform.position = drawLocation;
             cards.ElementAt(0).GetComponent<Card>().flip();
+
             if(drewCards.Count >= 1)
                 drewCards.ElementAt(drewCards.Count - 1).GetComponent<Renderer>().enabled = false;
+
             drewCards.Add(cards.ElementAt(0));
             cards.RemoveAt(0);
         }
@@ -93,26 +116,29 @@ public class Deck : MonoBehaviour
             drewCards.Clear();
             flip(); 
         }
+        GameManager.removeTempCard();
+        Debug.Log("Size of drew cards " + drewCards.Count.ToString());
     }
     public void shuffleTest()
     {
-        int t0, t1;
-        for (int i = 0; i < 100; i ++)
-        {
-            t0 = UnityEngine.Random.Range(0, 51);
-            t1 = UnityEngine.Random.Range(0, 51);
-            if (t0 == t1)
-                cards.Reverse();
-            else if (t0 < t1)
-            {
-                cards.Reverse(t0, t1 - t0);
-            }
-            else
-                cards.Reverse(t1, t0 - t1);
-            
+        if(cards.Count == 52) { 
+            int t0, t1;
+         for (int i = 0; i < 100; i++)
+         {
+             t0 = UnityEngine.Random.Range(0, 51);
+             t1 = UnityEngine.Random.Range(0, 51);
+             if (t0 == t1)
+                 cards.Reverse();
+             else if (t0 < t1)
+             {
+                 cards.Reverse(t0, t1 - t0);
+             }
+             else
+                 cards.Reverse(t1, t0 - t1);
+           }
+         cards.Reverse();
+         //  printCards();
         }
-        cards.Reverse();
-      //  printCards();
     }
     public void printCards()
     {
@@ -147,7 +173,12 @@ public class Deck : MonoBehaviour
             cards.ElementAt(i).transform.position = new Vector3(x, y); 
         }
     }
-    
+    public Card getTopDrewCard()
+    {
+        Debug.Log("inside getTopDrewCard function \n");
+        Debug.Log("size of drew cards " + drewCards.Count.ToString());
+        return drewCards.ElementAt(drewCards.Count - 1).GetComponent<Card>(); 
+    }
     public void flip()
     {
         foreach(GameObject c in cards)
@@ -160,13 +191,12 @@ public class Deck : MonoBehaviour
         int index = UnityEngine.Random.Range(0, 51);
         
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnMouseDown()
     {
-        draw();
+        draw(); 
+    }
+    public void removeTopDrewCard()
+    {
+        drewCards.RemoveAt(drewCards.Count - 1);
     }
 }
