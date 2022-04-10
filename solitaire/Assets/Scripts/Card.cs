@@ -48,10 +48,7 @@ public class Card : MonoBehaviour
     {
         Debug.Log("Checking if card can stack on run");
         if ((other.value == (value + 1)) && other.isRed() != isRed())
-        {
-            Debug.Log("can stacj"); 
             return true;
-        }
         else
         {
             Debug.Log("Card cannot stack ");

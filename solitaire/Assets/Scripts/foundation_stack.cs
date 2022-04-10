@@ -13,7 +13,6 @@ public class foundation_stack : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        GameManager.removeTempCards(); 
         if (GameManager.isTempCardSet())
         {
             AddCard(GameManager.getTempCard().gameObject);
@@ -45,18 +44,14 @@ public class foundation_stack : MonoBehaviour
         if (stack.Count == 0 && card.GetComponent<Card>().getValue() == 1)
         {
             GameManager.moveTempCard();
-            Debug.Log("adding caards");
             stack.Add(card);
-            Debug.Log("chaning parent"); 
             stack.ElementAt(stack.Count - 1).transform.parent = this.transform;
-            GameManager.removeTempCards();
         }
         else if (stack.Count >= 1 && card.GetComponent<Card>().canStackOnFoundation(stack.ElementAt(stack.Count - 1).GetComponent<Card>()))
         {
             stack.Add(card);
-            stack.ElementAt(stack.Count - 1).transform.parent = this.transform;
             GameManager.moveTempCard();
-            GameManager.removeTempCards();
+            stack.ElementAt(stack.Count - 1).transform.parent = this.transform;
 
         }
 

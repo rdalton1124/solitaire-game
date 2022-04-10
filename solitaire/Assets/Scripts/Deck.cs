@@ -143,7 +143,6 @@ public class Deck : MonoBehaviour
             drewCards.TrimExcess();
         }
         GameManager.removeTempCard();
-        GameManager.removeTempCards(); 
         Debug.Log("Size of drew cards " + drewCards.Count.ToString());
     }
     public void shuffleTest()
@@ -212,6 +211,11 @@ public class Deck : MonoBehaviour
         {
             c.GetComponent<Card>().flip();
         }
+    }
+    void randomCard()
+    {
+        int index = UnityEngine.Random.Range(0, 51);
+        
     }
     private void OnMouseDown()
     {
