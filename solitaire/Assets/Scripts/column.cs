@@ -76,8 +76,17 @@ public class column : MonoBehaviour
     {
         if (GameManager.isTempCardSet())
         {
-            Debug.Log("card has been set"); 
-            if(GameManager.getTempCard().canStackOnRun(faceUp.ElementAt(faceUp.Count - 1)))
+            Debug.Log("card has been set");
+            if (faceUp.Count == 0)
+            {
+                if (GameManager.getTempCard().getValue() == 13)
+                {
+                    GameManager.moveTempCard();
+                    addCardFaceUp(GameManager.getTempCard());
+                    printCards();
+                }
+            }
+            else if (GameManager.getTempCard().canStackOnRun(faceUp.ElementAt(faceUp.Count - 1)))
             {
                 
                 GameManager.moveTempCard();

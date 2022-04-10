@@ -37,7 +37,7 @@ public class Deck : MonoBehaviour
             temp2.transform.parent = GameObject.Find("Deck").transform;
             temp2.transform.position = temp2.transform.parent.position;
 
-            if (i >= 1 && i <= 12)
+            if (i >= 0 && i <= 12)
                 temp2.GetComponent<Card>().setSuite(1);
             else if (i >= 13 && i <= 25)
                 temp2.GetComponent<Card>().setSuite(2);
