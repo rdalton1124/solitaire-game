@@ -36,7 +36,18 @@ public class Deck : MonoBehaviour
             temp2.name = (i + 1).ToString();
             temp2.transform.parent = GameObject.Find("Deck").transform;
             temp2.transform.position = temp2.transform.parent.position;
-            temp2.GetComponent<Card>().setSuite((int)((i + 1) / 13) + 1);
+
+            if (i >= 1 && i <= 12)
+                temp2.GetComponent<Card>().setSuite(1);
+            else if (i >= 13 && i <= 25)
+                temp2.GetComponent<Card>().setSuite(2);
+            else if (i >= 26 && i <= 38)
+                temp2.GetComponent<Card>().setSuite(3);
+            else if (i <= 51)
+                temp2.GetComponent<Card>().setSuite(4);
+            else
+                temp2.GetComponent<Card>().setSuite(0); 
+
 
             if ((i + 1) % 13 == 0)
                 temp2.GetComponent<Card>().setValue(13);
@@ -73,6 +84,16 @@ public class Deck : MonoBehaviour
         }
 
     }
+    public bool contains(Card other)
+    {
+        bool b = false; 
+        for(int i = 0; i < drewCards.Count; i ++)
+        {
+            if (other.equalsCard(drewCards.ElementAt(i).GetComponent<Card>()))
+                b = true; 
+        }
+        return b; 
+    }
     public void deal()
     {
         shuffleTest();
@@ -88,6 +109,9 @@ public class Deck : MonoBehaviour
             tableu.transform.GetChild(i).GetComponent<column>().addCardFaceUp(cards.ElementAt(0).GetComponent<Card>());
             cards.ElementAt(0).transform.position = tableu.transform.GetChild(i).transform.position;
             cards.RemoveAt(0);
+        }
+        for(int i = 0; i < 7; i++)
+        {
             tableu.transform.GetChild(i).GetComponent<column>().printCards(); 
         }
         draw(); 
@@ -107,14 +131,16 @@ public class Deck : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < 52; i++)
+            for (int i = 0; i < drewCards.Count; i++)
             {
                 cards.Add(drewCards.ElementAt(i));
                 cards.ElementAt(i).GetComponent<Renderer>().enabled = true; 
-                cards.ElementAt(i).transform.position = new Vector3(drawLocation.x + 3, drawLocation.y, drawLocation.z); 
+                cards.ElementAt(i).transform.position = new Vector3(drawLocation.x + 3, drawLocation.y, drawLocation.z);
+                if (cards.ElementAt(i).GetComponent<Card>().FaceUp())
+                    cards.ElementAt(i).GetComponent<Card>().flip(); 
             }
             drewCards.Clear();
-            flip(); 
+            drewCards.TrimExcess();
         }
         GameManager.removeTempCard();
         Debug.Log("Size of drew cards " + drewCards.Count.ToString());
@@ -198,5 +224,7 @@ public class Deck : MonoBehaviour
     public void removeTopDrewCard()
     {
         drewCards.RemoveAt(drewCards.Count - 1);
+        if (drewCards.Count > 0)
+            drewCards.ElementAt(drewCards.Count - 1).GetComponent<Renderer>().enabled = true;
     }
 }

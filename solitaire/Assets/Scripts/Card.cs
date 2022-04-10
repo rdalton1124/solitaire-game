@@ -14,10 +14,6 @@ public class Card : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = bSprite;
         isFaceUp = false; 
     }
-    void Update()
-    {
-
-    }
     public void setFSprite(Sprite f)
     {
         fSprite = f;
@@ -57,9 +53,11 @@ public class Card : MonoBehaviour
         {
             Debug.Log("Card cannot stack ");
             Debug.Log("Card's value " + value.ToString());
+            Debug.Log("Card is red " + isRed().ToString());
             Debug.Log("Card's suite " + suite.ToString());
             Debug.Log("Other Card's value " + other.value.ToString());
-            Debug.Log("Other czards's suite " + other.suite.ToString()); 
+            Debug.Log("Other cards's suite " + other.suite.ToString());
+            Debug.Log("Other card is red " + other.isRed()); 
             return false;
         }
     }
@@ -71,13 +69,20 @@ public class Card : MonoBehaviour
     public bool canStackOnFoundation(Card other)
     {
         //if (value == 1)
-          //  return true;
+        //  return true;
 
         if ((other.value == (value - 1)) && other.suite == suite)
             return true;
 
         else
+        {
+            Debug.Log("cannot stafck on foundation");
+            Debug.Log("This card's suite " + suite.ToString());
+            Debug.Log("this card's value  is = " + value.ToString());
+            Debug.Log("other cards' suite i " + other.suite.ToString());
+            Debug.Log("other cards' value is " + other.value.ToString()); 
             return false;
+        }
     }
     public bool FaceUp()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameObject deck, foundation, tableau; 
+    static public  GameObject deck, foundation, tableau; 
     static Card tempCard;
     static bool cardSet = false;
     void Start()
@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
     }
     public static void moveTempCard()
     {
-
-        if(tempCard.transform.parent == deck)
+        Debug.Log("move temp card "); 
+        if(deck.GetComponent<Deck>().getTopDrewCard().equalsCard(tempCard))
         {
             Debug.Log("Card is a from deck");
             deck.GetComponent<Deck>().removeTopDrewCard();
@@ -44,16 +44,18 @@ public class GameManager : MonoBehaviour
         }
         else if(tempCard.transform.parent.parent == foundation)
         {
-
+            removeTempCard();
         }
-        else
+        else if(tempCard.gameObject.transform.parent.GetComponent<column>())
         {
-            tempCard.transform.parent.GetComponent<column>().removeTopCards(); 
+            Debug.Log("card is from tableau"); 
+            tempCard.transform.parent.GetComponent<column>().removeTopCards();
         }
+       // removeTempCard(); 
     }
     public static void removeTempCard()
     {
-        Debug.Log("card removed"); 
+        Debug.Log("temp card removed"); 
         cardSet = false;
     }
 }

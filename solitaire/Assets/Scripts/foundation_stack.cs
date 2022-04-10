@@ -41,15 +41,18 @@ public class foundation_stack : MonoBehaviour
     }
     void AddCard(GameObject card)
     {
-        if(stack.Count == 0 && card.GetComponent<Card>().getValue() == 1)
+        if (stack.Count == 0 && card.GetComponent<Card>().getValue() == 1)
         {
             GameManager.moveTempCard();
             stack.Add(card);
+            stack.ElementAt(stack.Count - 1).transform.parent = this.transform;
         }
-        else if (card.GetComponent<Card>().canStackOnFoundation(stack.ElementAt(stack.Count - 1).GetComponent<Card>()))
+        else if (stack.Count >= 1 && card.GetComponent<Card>().canStackOnFoundation(stack.ElementAt(stack.Count - 1).GetComponent<Card>()))
         {
             stack.Add(card);
             GameManager.moveTempCard();
+            stack.ElementAt(stack.Count - 1).transform.parent = this.transform;
+
         }
 
         if (stack.Count != 0)
