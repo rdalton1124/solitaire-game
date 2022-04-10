@@ -16,7 +16,9 @@ public class drewCards : MonoBehaviour
         Card  tmp = deck.GetComponent<Deck>().getTopDrewCard();
         if (tmp)
         {
-            GameManager.setTempCard(tmp.gameObject);
+            GameManager.removeTempCards();
+            GameManager.removeTempCard(); 
+            GameManager.setTempCard(tmp);
         }
     }
 }
