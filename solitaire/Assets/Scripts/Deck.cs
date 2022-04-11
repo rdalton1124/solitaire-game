@@ -143,6 +143,7 @@ public class Deck : MonoBehaviour
             drewCards.TrimExcess();
         }
         GameManager.removeTempCard();
+        GameManager.removeTempCards(); 
         Debug.Log("Size of drew cards " + drewCards.Count.ToString());
     }
     public void shuffleTest()
@@ -198,6 +199,10 @@ public class Deck : MonoBehaviour
             }
             cards.ElementAt(i).transform.position = new Vector3(x, y); 
         }
+    }
+    public int getNumDrewCards()
+    {
+        return drewCards.Count; 
     }
     public Card getTopDrewCard()
     {

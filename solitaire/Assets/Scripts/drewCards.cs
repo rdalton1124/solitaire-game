@@ -13,10 +13,13 @@ public class drewCards : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Card  tmp = deck.GetComponent<Deck>().getTopDrewCard();
-        if (tmp)
+        if (deck.GetComponent<Deck>().getNumDrewCards() > 0)
         {
-            GameManager.setTempCard(tmp.gameObject);
+            Card tmp = deck.GetComponent<Deck>().getTopDrewCard();
+            if (tmp)
+            {
+                GameManager.setTempCard(tmp.gameObject);
+            }
         }
     }
 }
