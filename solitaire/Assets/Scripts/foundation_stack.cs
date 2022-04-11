@@ -7,10 +7,6 @@ public class foundation_stack : MonoBehaviour
 {
     public GameObject deck;
     List<GameObject> stack = new List<GameObject>();
-    void Start()
-    {
-        
-    }
     private void OnMouseDown()
     {
         if (GameManager.isTempCardSet())

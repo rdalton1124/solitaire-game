@@ -96,7 +96,7 @@ public class Deck : MonoBehaviour
     }
     public void deal()
     {
-        shuffleTest();
+        shuffle();
         for(int i = 0; i < 7; i++)
         {
 
@@ -146,8 +146,9 @@ public class Deck : MonoBehaviour
         GameManager.removeTempCards(); 
         Debug.Log("Size of drew cards " + drewCards.Count.ToString());
     }
-    public void shuffleTest()
+    public void shuffle()
     {
+        Debug.Log("Init state = " + UnityEngine.Random.seed.ToString());
         if(cards.Count == 52) { 
             int t0, t1;
          for (int i = 0; i < 100; i++)
@@ -165,6 +166,29 @@ public class Deck : MonoBehaviour
            }
          cards.Reverse();
          //  printCards();
+        }
+    }
+    public void shuffle(int seed)
+    {
+        UnityEngine.Random.InitState(seed);
+        if (cards.Count == 52)
+        {
+            int t0, t1;
+            for (int i = 0; i < 100; i++)
+            {
+                t0 = UnityEngine.Random.Range(0, 51);
+                t1 = UnityEngine.Random.Range(0, 51);
+                if (t0 == t1)
+                    cards.Reverse();
+                else if (t0 < t1)
+                {
+                    cards.Reverse(t0, t1 - t0);
+                }
+                else
+                    cards.Reverse(t1, t0 - t1);
+            }
+            cards.Reverse();
+            //  printCards();
         }
     }
     public void printCards()
