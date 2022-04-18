@@ -92,8 +92,15 @@ public class column : MonoBehaviour
             if (!faceUp.ElementAt(i).FaceUp())
                 faceUp.ElementAt(i).flip(); 
         }
-        Vector3 pos2 = faceUp.ElementAt(faceUp.Count - 1).transform.localPosition;
-        this.GetComponent<BoxCollider2D>().offset = pos2;
+        if (faceUp.Count > 0)
+        {
+            Vector3 pos2 = faceUp.ElementAt(faceUp.Count - 1).transform.localPosition;
+            this.GetComponent<BoxCollider2D>().offset = pos2;
+        }
+        else
+        {
+            this.GetComponent<BoxCollider2D>().offset = Vector3.zero;
+        }
     }
     
     private void OnMouseDown()
@@ -163,7 +170,7 @@ public class column : MonoBehaviour
         }
         else
         {
-            GameManager.setTempCard(faceUp.ElementAt(faceUp.Count - 1).gameObject);
+             GameManager.setTempCard(faceUp.ElementAt(faceUp.Count - 1).gameObject);
             GameManager.setTempCards(faceUp);
         }
     }
