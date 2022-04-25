@@ -94,8 +94,8 @@ public class column : MonoBehaviour
         }
         if (faceUp.Count > 0)
         {
-            Vector3 pos2 = faceUp.ElementAt(faceUp.Count - 1).transform.localPosition;
-            this.GetComponent<BoxCollider2D>().offset = pos2;
+            this.GetComponent<BoxCollider2D>().offset = faceUp.ElementAt((int) Mathf.Floor(faceUp.Count / 2)).transform.localPosition;
+            this.GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 2 + (.5f * (faceUp.Count - 1))); 
         }
         else
         {
@@ -170,7 +170,7 @@ public class column : MonoBehaviour
         }
         else
         {
-             GameManager.setTempCard(faceUp.ElementAt(faceUp.Count - 1).gameObject);
+            GameManager.setTempCard(faceUp.ElementAt(faceUp.Count - 1).gameObject);
             GameManager.setTempCards(faceUp);
         }
     }
