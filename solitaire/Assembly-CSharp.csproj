@@ -53,15 +53,8 @@
     <UnityVersion>2020.3.16f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets/Scripts/Deck.cs" />
-    <Compile Include="Assets/Scripts/GameManager.cs" />
-    <Compile Include="Assets/Scripts/Buttons_Freeplay.cs" />
-    <Compile Include="Assets/Scripts/foundation_stack.cs" />
-    <Compile Include="Assets/Scripts/Buttons_main_menu.cs" />
-    <Compile Include="Assets/Scripts/drewCards.cs" />
-    <Compile Include="Assets/Scripts/Card.cs" />
-    <Compile Include="Assets/Scripts/column.cs" />
     <Compile Include="Assets/MainMenu.cs" />
+    <Compile Include="Assets/Scripts/column.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
