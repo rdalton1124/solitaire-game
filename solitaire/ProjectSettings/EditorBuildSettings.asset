@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/game_main.unity
     guid: d3516b79b6d8a4ff7becf680d015c546
   - enabled: 1
-    path: Assets/Scenes/game_free_play.unity
+    path: Assets/Scenes/game_classic_mode.unity
     guid: 389653898c1934dcb954ad61e996766b
   m_configObjects: {}
