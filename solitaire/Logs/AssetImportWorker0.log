@@ -384,3 +384,4 @@ Received Import Request.
 Start importing Assets/Scenes/game_free_play.unity using Guid(389653898c1934dcb954ad61e996766b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0761b7f1717fe9b40f4a035b131e5edd') in 0.001320 seconds 
   Import took 0.005085 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
