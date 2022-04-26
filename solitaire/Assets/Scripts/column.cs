@@ -74,21 +74,23 @@ public class column : MonoBehaviour
     {
         float x = 0;
         float y = 0;
-        float z = 0;
+        float z = faceDown.Count; 
         
         for (int i = 0; i < faceDown.Count; i++)
         {
-            faceDown.ElementAt(i).transform.localPosition = new Vector3(x, y - (.15f * i), z);
+            faceDown.ElementAt(i).transform.localPosition = new Vector3(x, y - (.25f * i), z);
          
             if (faceDown.ElementAt(i).FaceUp())
                 faceDown.ElementAt(i).flip();
+
+            z--; 
         }
         
         for (int i = 0; i < faceUp.Count; i ++)
         {
            // y -= .5f; 
             z--;
-            faceUp.ElementAt(i).transform.localPosition = new Vector3(x, y - (.4f * i) - (.15f * (faceDown.Count - 1)), z); 
+            faceUp.ElementAt(i).transform.localPosition = new Vector3(x, y - (.4f * i) - (.25f * (faceDown.Count)), z); 
             if (!faceUp.ElementAt(i).FaceUp())
                 faceUp.ElementAt(i).flip(); 
         }
