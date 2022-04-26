@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637852986830000000
+      ticks: 637865032430000000
     m_Hash: 1178821294
   m_LockFileStatus:
     m_FilePath: /Users/rdalton/solitaire/solitaire/solitaire/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637852986830000000
+      ticks: 637865032430000000
     m_Hash: 2904360969
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
