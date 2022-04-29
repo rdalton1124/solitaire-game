@@ -17,6 +17,7 @@ public class Deck : MonoBehaviour
     public Vector3 drawLocation;
     public GameObject drewObj;
     public GameObject tableu;
+
     private void Start()
     {
 
@@ -96,7 +97,7 @@ public class Deck : MonoBehaviour
     }
     public void deal()
     {
-        shuffle();
+        shuffle(53120261);
         for(int i = 0; i < 7; i++)
         {
 
@@ -116,12 +117,35 @@ public class Deck : MonoBehaviour
         }
         draw(); 
     }
+    
     public void draw()
     {
         if(cards.Count > 0)
-        { 
-            cards.ElementAt(0).transform.position = drawLocation;
-            cards.ElementAt(0).GetComponent<Card>().flip();
+        {
+            float y = transform.position.y;
+            float z = transform.position.z;
+            for(int i = 0; i < 6; i++)
+            {
+                Debug.Log("i = " +  i.ToString());
+                int tst = 0; 
+                
+                cards.ElementAt(0).transform.position = new Vector3(((i + 1) * (.5f)), y, z); 
+                if (i < 3)
+                {
+                    cards.ElementAt(0).transform.Rotate(0, -30f, 0);
+                }
+                else
+                {
+                    cards.ElementAt(0).transform.Rotate(0, 30f, 0);
+                    if (!cards.ElementAt(0).GetComponent<Card>().FaceUp())
+                        cards.ElementAt(0).GetComponent<Card>().flip(); 
+                }
+                System.Threading.Thread.Sleep(58);
+                Debug.Log("i = " + i.ToString());
+                Debug.Log("angle = " + cards.ElementAt(0).transform.rotation.y);
+                Debug.Log("position " + cards.ElementAt(0).transform.position.x);
+            }            //cards.ElementAt(0).transform.position = drawLocation;
+            //cards.ElementAt(0).GetComponent<Card>().flip();
 
             if(drewCards.Count >= 1)
                 drewCards.ElementAt(drewCards.Count - 1).GetComponent<Renderer>().enabled = false;
@@ -147,9 +171,9 @@ public class Deck : MonoBehaviour
         Debug.Log("Size of drew cards " + drewCards.Count.ToString());
     }
     public void shuffle()
-    {
-        Debug.Log("Init state = " + UnityEngine.Random.seed.ToString());
-        if(cards.Count == 52) { 
+    {   //
+        Debug.Log("init state =  " + UnityEngine.Random.seed.ToString()); 
+        if (cards.Count == 52) { 
             int t0, t1;
          for (int i = 0; i < 100; i++)
          {
@@ -170,7 +194,7 @@ public class Deck : MonoBehaviour
     }
     public void shuffle(int seed)
     {
-        UnityEngine.Random.InitState(seed);
+        UnityEngine.Random.seed = seed;
         if (cards.Count == 52)
         {
             int t0, t1;

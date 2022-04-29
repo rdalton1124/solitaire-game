@@ -88,7 +88,7 @@ public class column : MonoBehaviour
         
         for (int i = 0; i < faceUp.Count; i ++)
         {
-           // y -= .5f; 
+           // y -= .5f; e
             z--;
             faceUp.ElementAt(i).transform.localPosition = new Vector3(x, y - (.4f * i) - (.25f * (faceDown.Count)), z); 
             if (!faceUp.ElementAt(i).FaceUp())
