@@ -1,5 +1,5 @@
 1031606578
-Init state = 53120261
+Init state = -53120261
 UnityEngine.Debug:Log (object)
 Deck:shuffle () (at Assets/Scripts/Deck.cs:174)
 Deck:deal () (at Assets/Scripts/Deck.cs:100)

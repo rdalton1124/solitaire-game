@@ -62,7 +62,7 @@ public class column : MonoBehaviour
     }
     public void addManyCards(List<Card> cards)
     {
-        Debug.Log("ARDding " + cards.Count.ToString() + " cards");
+        Debug.Log("Addding " + cards.Count.ToString() + " cards");
         for(int i = 0; i < cards.Count; i ++)
         {
             addCardFaceUp(cards.ElementAt(i));

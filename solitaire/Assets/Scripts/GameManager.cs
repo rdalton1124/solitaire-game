@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq; 
+using System.Linq;
+using UnityEngine.SceneManagement; 
 public class GameManager : MonoBehaviour
 {
     static public  GameObject deck, foundation, tableau; 
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
         deck = GameObject.Find("Deck");
         foundation = GameObject.Find("foundation");
         tableau = GameObject.Find("runs");
+
     }
 
     // Update is called once per frame
@@ -76,7 +78,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("card is from tableau"); 
             tempCard.transform.parent.GetComponent<column>().removeTopCards(1);
         }
-        removeTempCard(); 
+        removeTempCard();
+        removeTempCards(); 
     }
     public static void removeTempCard()
     {

@@ -48,7 +48,6 @@ public class foundation_stack : MonoBehaviour
             stack.Add(card);
             GameManager.moveTempCard();
             stack.ElementAt(stack.Count - 1).transform.parent = this.transform;
-
         }
 
         if (stack.Count != 0)

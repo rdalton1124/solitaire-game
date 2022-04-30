@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using UnityEngine.SceneManagement;
 
 public class Deck : MonoBehaviour 
 {
@@ -20,7 +20,6 @@ public class Deck : MonoBehaviour
 
     private void Start()
     {
-
         Vector3 pos = this.transform.position;
         drawLocation.x = pos.x - 3;
         drawLocation.y = pos.y;
@@ -78,12 +77,28 @@ public class Deck : MonoBehaviour
                 temp2.GetComponent<Card>().setFSprite(nw);
                 cards.Add(temp2);
             }
-            //temp2.GetComponent<Card>().flip();
-            //temp2 = Instantiate(new GameObject());
-
-            // cards.Insert(i, temp2);
+           
         }
+        switch(SceneManager.GetActiveScene().name)
+        {
+            case "level1":
+                deal(1031606578);
+                break;
+            case "level2":
 
+                break;
+            case "level3":
+
+                break;
+            case "level4":
+
+                break;
+            case "level5":
+
+                break;
+            default:
+                break; 
+        }
     }
     public bool contains(Card other)
     {
@@ -97,7 +112,7 @@ public class Deck : MonoBehaviour
     }
     public void deal()
     {
-        shuffle(53120261);
+        shuffle(); 
         for(int i = 0; i < 7; i++)
         {
 
@@ -117,7 +132,28 @@ public class Deck : MonoBehaviour
         }
         draw(); 
     }
-    
+    public void deal(int sdd)
+    {
+        shuffle(sdd);
+        for (int i = 0; i < 7; i++)
+        {
+
+            for (int j = 0; j < i; j++)
+            {
+                tableu.transform.GetChild(i).GetComponent<column>().addCardFromDeal(cards.ElementAt(0).GetComponent<Card>());
+                cards.ElementAt(0).transform.position = tableu.transform.GetChild(i).transform.position;
+                cards.RemoveAt(0);
+            }
+            tableu.transform.GetChild(i).GetComponent<column>().addCardFaceUp(cards.ElementAt(0).GetComponent<Card>());
+            cards.ElementAt(0).transform.position = tableu.transform.GetChild(i).transform.position;
+            cards.RemoveAt(0);
+        }
+        for (int i = 0; i < 7; i++)
+        {
+            tableu.transform.GetChild(i).GetComponent<column>().printCards();
+        }
+        draw();
+    }
     public void draw()
     {
         if(cards.Count > 0)
