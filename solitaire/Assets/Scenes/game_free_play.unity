@@ -1481,6 +1481,7 @@ GameObject:
   - component: {fileID: 755430093}
   - component: {fileID: 755430092}
   - component: {fileID: 755430094}
+  - component: {fileID: 755430095}
   m_Layer: 7
   m_Name: Deck
   m_TagString: Untagged
@@ -1501,6 +1502,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 2635847657534102507, guid: 12980321f0fcd4219bfead2ca57deda1, type: 3}
+  cards: []
+  drewCards: []
   bSprite: {fileID: 21300000, guid: fd25a723e22b44c5682a05c146631b44, type: 3}
   drawLocation: {x: 0, y: 0, z: 0}
   drewObj: {fileID: 506949971}
@@ -1546,6 +1549,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2}
   m_EdgeRadius: 0
+--- !u!95 &755430095
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755430091}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33d78be45d5b0426c9ecbd79a6f58f90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &767102968
 GameObject:
   m_ObjectHideFlags: 0

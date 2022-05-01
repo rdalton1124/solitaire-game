@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2635847657534102505}
   - component: {fileID: 2635847657534102504}
   - component: {fileID: 2635847657534102518}
+  - component: {fileID: 653719433728426476}
   m_Layer: 0
   m_Name: Card
   m_TagString: cards
@@ -47,6 +48,7 @@ MonoBehaviour:
   fSprite: {fileID: 0}
   bSprite: {fileID: 21300000, guid: fd25a723e22b44c5682a05c146631b44, type: 3}
   value: 0
+  anim: {fileID: 7400000, guid: b3b259f5181be42a8ac2d0e4ea87fb21, type: 2}
 --- !u!212 &2635847657534102518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,3 +100,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!111 &653719433728426476
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2635847657534102507}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: b3b259f5181be42a8ac2d0e4ea87fb21, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

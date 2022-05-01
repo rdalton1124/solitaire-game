@@ -9,16 +9,24 @@ public class Card : MonoBehaviour
     enum suites {error, clubs, diamonds, hearts, spades};
     suites suite;
     bool isFaceUp;
+    public AnimationClip anim;
+Animation anim2; 
     void Start()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = bSprite;
-        isFaceUp = false; 
+        isFaceUp = false;
+        anim2 = this.GetComponent<Animation>();
+        anim2.clip = anim; 
     }
     public void setFSprite(Sprite f)
     {
         fSprite = f;
        // fSprite.texture.Resize(64, 64);
     
+    }
+    public void anim8()
+    {
+        anim2.Play(); 
     }
     public void flip()
     {

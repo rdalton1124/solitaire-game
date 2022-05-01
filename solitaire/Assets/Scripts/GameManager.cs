@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
         deck = GameObject.Find("Deck");
         foundation = GameObject.Find("foundation");
         tableau = GameObject.Find("runs");
-
     }
 
     // Update is called once per frame

@@ -96,8 +96,21 @@ public class column : MonoBehaviour
         }
         if (faceUp.Count > 0)
         {
-            Vector3 pos2 = faceUp.ElementAt(faceUp.Count - 1).transform.localPosition;
-            this.GetComponent<BoxCollider2D>().offset = pos2;
+            Vector3 offset = new Vector3(0, 0, 0);
+            if (faceUp.Count % 2 == 0)
+            {
+                float off1, off2;
+                off1 = faceUp.ElementAt((int)faceUp.Count / 2).transform.localPosition.y;
+                off2 = faceUp.ElementAt((int)(faceUp.Count / 2) - 1).transform.localPosition.y; 
+                offset.y = (off1 + off2) / 2;
+             //   offset.y -= .5f; 
+            }
+            else
+            {
+                offset = faceUp.ElementAt((int)Mathf.Floor(faceUp.Count / 2)).transform.localPosition;
+            }
+            this.GetComponent<BoxCollider2D>().offset = offset;
+            GetComponent<BoxCollider2D>().size  = new Vector2(1.5f, 2 + (.5f * (faceUp.Count - 1))); 
         }
         else
         {

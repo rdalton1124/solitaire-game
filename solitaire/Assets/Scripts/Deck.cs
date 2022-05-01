@@ -11,8 +11,8 @@ public class Deck : MonoBehaviour
 {
    // public Card tst; 
     public GameObject cardPrefab; 
-    List<GameObject> cards = new List<GameObject>();
-    List<GameObject> drewCards = new List<GameObject>(); 
+    public List<GameObject> cards = new List<GameObject>();
+    public List<GameObject> drewCards = new List<GameObject>(); 
     public Sprite bSprite;
     public Vector3 drawLocation;
     public GameObject drewObj;
@@ -85,16 +85,12 @@ public class Deck : MonoBehaviour
                 deal(1031606578);
                 break;
             case "level2":
-
                 break;
             case "level3":
-
                 break;
             case "level4":
-
                 break;
             case "level5":
-
                 break;
             default:
                 break; 
@@ -160,29 +156,10 @@ public class Deck : MonoBehaviour
         {
             float y = transform.position.y;
             float z = transform.position.z;
-            for(int i = 0; i < 6; i++)
-            {
-                Debug.Log("i = " +  i.ToString());
-                int tst = 0; 
-                
-                cards.ElementAt(0).transform.position = new Vector3(((i + 1) * (.5f)), y, z); 
-                if (i < 3)
-                {
-                    cards.ElementAt(0).transform.Rotate(0, -30f, 0);
-                }
-                else
-                {
-                    cards.ElementAt(0).transform.Rotate(0, 30f, 0);
-                    if (!cards.ElementAt(0).GetComponent<Card>().FaceUp())
-                        cards.ElementAt(0).GetComponent<Card>().flip(); 
-                }
-                System.Threading.Thread.Sleep(58);
-                Debug.Log("i = " + i.ToString());
-                Debug.Log("angle = " + cards.ElementAt(0).transform.rotation.y);
-                Debug.Log("position " + cards.ElementAt(0).transform.position.x);
-            }            //cards.ElementAt(0).transform.position = drawLocation;
-            //cards.ElementAt(0).GetComponent<Card>().flip();
+            if(!cards.ElementAt(0).GetComponent<Card>().FaceUp())
+                cards.ElementAt(0).GetComponent<Card>().flip();
 
+            cards.ElementAt(0).transform.position = drewObj.transform.position; 
             if(drewCards.Count >= 1)
                 drewCards.ElementAt(drewCards.Count - 1).GetComponent<Renderer>().enabled = false;
 
