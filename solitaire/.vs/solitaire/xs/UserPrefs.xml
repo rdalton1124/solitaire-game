@@ -1,15 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/column.cs">
     <Files>
-      <File FileName="Assets/Scripts/Deck.cs" Line="85" Column="34" />
-      <File FileName="Assets/Scripts/foundation_stack.cs" Line="15" Column="10" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Deck.cs" />
+      <File FileName="Assets/Scripts/foundation_stack.cs" />
       <File FileName="Assets/Scripts/column.cs" Line="104" Column="97" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="16" Column="43" />
-      <File FileName="Assets/Scripts/MainMenu.cs" Line="24" Column="1" />
-      <File FileName="Assets/Scripts/Card.cs" Line="29" Column="8" />
-      <File FileName="Assets/Scripts/drewCards.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Buttons_Freeplay.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Buttons_main_menu.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MainMenu.cs" />
+      <File FileName="Assets/Scripts/Card.cs" />
+      <File FileName="Assets/Scripts/drewCards.cs" />
+      <File FileName="Assets/Scripts/Buttons_Freeplay.cs" />
+      <File FileName="Assets/Scripts/Buttons_main_menu.cs" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
