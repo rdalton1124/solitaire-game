@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Deck.cs">
     <Files>
-      <File FileName="Assets/Scripts/Deck.cs" Line="135" Column="9" />
-      <File FileName="Assets/Scripts/foundation_stack.cs" Line="41" Column="10" />
-      <File FileName="Assets/Scripts/column.cs" Line="187" Column="33" />
+      <File FileName="Assets/Scripts/Deck.cs" Line="129" Column="1" />
+      <File FileName="Assets/Scripts/foundation_stack.cs" />
+      <File FileName="Assets/Scripts/column.cs" />
       <File FileName="Assets/Scripts/MainMenu.cs" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="123" Column="44" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="98" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
