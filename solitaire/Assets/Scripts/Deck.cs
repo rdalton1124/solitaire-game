@@ -79,22 +79,24 @@ public class Deck : MonoBehaviour
             }
            
         }
-        switch(SceneManager.GetActiveScene().name)
-        {
-            case "level1":
-                deal(1031606578);
-                break;
-            case "level2":
-                break;
-            case "level3":
-                break;
-            case "level4":
-                break;
-            case "level5":
-                break;
-            default:
-                break; 
-        }
+
+
+        /* switch(SceneManager.GetActiveScene().name)
+         {
+             case "level1":
+                 deal(1031606578);
+                 break;
+             case "level2":
+                 break;
+             case "level3":
+                 break;
+             case "level4":
+                 break;
+             case "level5":
+                 break;
+             default:
+                 break; 
+         }*/
     }
     public bool contains(Card other)
     {
@@ -202,7 +204,6 @@ public class Deck : MonoBehaviour
                  cards.Reverse(t1, t0 - t1);
            }
          cards.Reverse();
-         //  printCards();
         }
     }
     public void shuffle(int seed)

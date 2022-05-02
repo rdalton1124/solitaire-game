@@ -19,6 +19,10 @@ public class foundation_stack : MonoBehaviour
     {
         
     }
+    public int getSize()
+    {
+        return stack.Count;
+    }
     void printCards()
     {
         if(stack.Count != 0)

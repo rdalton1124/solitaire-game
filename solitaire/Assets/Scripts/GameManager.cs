@@ -5,21 +5,56 @@ using System.Linq;
 using UnityEngine.SceneManagement; 
 public class GameManager : MonoBehaviour
 {
-    static public  GameObject deck, foundation, tableau; 
+    static public  GameObject deck, foundation, tableau;
+    public GameObject winner, btns, strt; 
     static Card tempCard;
     static List<Card> tempCards = new List<Card>(); 
     static bool cardSet = false;
+    bool gameWon = false;
     void Start()
     {
         deck = GameObject.Find("Deck");
         foundation = GameObject.Find("foundation");
         tableau = GameObject.Find("runs");
+        winner.SetActive(false); 
     }
-
-    // Update is called once per frame
+    public void startLevel()
+    {
+     strt.SetActive(false);
+      switch(SceneManager.GetActiveScene().name)
+      {
+          case "level1":
+              deck.GetComponent<Deck>().deal(1031606578);
+              break;
+          case "level2":
+              break;
+          case "level3":
+              break;
+          case "level4":
+              break;
+          case "level5":
+              break;
+          default:
+              break; 
+      }
+    }
+    void deal()
+    {
+        deck.GetComponent<Deck>().deal(); 
+    }
     void Update()
     {
-
+        bool b = true;
+        for(int i = 0; i < 4; i ++)
+        {
+            if (foundation.transform.GetChild(i).GetComponent<foundation_stack>().getSize() != 13)
+                b = false; 
+        }
+        if(b)
+        {
+            winner.SetActive(true);
+            btns.SetActive(false); 
+        }
     }
     public static Card getTempCard()
     {
