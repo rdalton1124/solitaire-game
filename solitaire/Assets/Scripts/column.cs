@@ -5,11 +5,8 @@ using System.Linq;
 public class column : MonoBehaviour
 {
     List<Card> faceDown = new List<Card>();
-    List<Card> faceUp = new List<Card>(); 
-    void Start()
-    {
-  
-    }
+    List<Card> faceUp = new List<Card>();
+    public GameObject gm;
     public bool contains(Card card)
     {
         bool b = false;
@@ -35,7 +32,8 @@ public class column : MonoBehaviour
             addCardFaceUp(faceDown.ElementAt(faceDown.Count - 1));
             faceDown.RemoveAt(faceDown.Count - 1);
             faceUp.ElementAt(0).transform.position = new Vector3(faceUp.ElementAt(0).transform.position.x, faceUp.ElementAt(0).transform.position.y, -1);
-            printCards(); 
+            printCards();
+            
         }
     }
     public void removeTopCards(int numCards)
@@ -50,12 +48,14 @@ public class column : MonoBehaviour
                 faceDown.RemoveAt(faceDown.Count - 1);
                 faceUp.ElementAt(0).transform.position = new Vector3(faceUp.ElementAt(0).transform.position.x, faceUp.ElementAt(0).transform.position.y, -1);
                 printCards();
+           //     gm.GetComponent<GameManager>().add5Points(); 
             }
         }
     }
     public void addCardFaceUp(Card card)
     {
-        faceUp.Add(card);
+        gm.GetComponent<GameManager>().add5Points(); 
+        faceUp.Add(card); 
         card.transform.parent = this.transform; 
         if (!card.FaceUp())
             card.flip();
@@ -65,6 +65,7 @@ public class column : MonoBehaviour
         Debug.Log("Addding " + cards.Count.ToString() + " cards");
         for(int i = 0; i < cards.Count; i ++)
         {
+            gm.GetComponent<GameManager>().add3Points(); 
             addCardFaceUp(cards.ElementAt(i));
             Debug.Log("adding card"); 
         }
@@ -83,7 +84,7 @@ public class column : MonoBehaviour
             if (faceDown.ElementAt(i).FaceUp())
                 faceDown.ElementAt(i).flip();
 
-            z--; 
+            z--;
         }
         
         for (int i = 0; i < faceUp.Count; i ++)
@@ -183,9 +184,9 @@ public class column : MonoBehaviour
                 GameManager.setTempCard(faceUp.ElementAt(faceUp.Count - 1).gameObject);
             }
         }
-        else
+        else if(faceUp.Count > 0)
         {
-             GameManager.setTempCard(faceUp.ElementAt(faceUp.Count - 1).gameObject);
+            GameManager.setTempCard(faceUp.ElementAt(faceUp.Count - 1).gameObject);
             GameManager.setTempCards(faceUp);
         }
     }

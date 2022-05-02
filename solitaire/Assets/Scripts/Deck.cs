@@ -10,7 +10,8 @@ using UnityEngine.SceneManagement;
 public class Deck : MonoBehaviour 
 {
    // public Card tst; 
-    public GameObject cardPrefab; 
+    public GameObject cardPrefab;
+    public GameObject gm; 
     public List<GameObject> cards = new List<GameObject>();
     public List<GameObject> drewCards = new List<GameObject>(); 
     public Sprite bSprite;
@@ -80,23 +81,6 @@ public class Deck : MonoBehaviour
            
         }
 
-
-        /* switch(SceneManager.GetActiveScene().name)
-         {
-             case "level1":
-                 deal(1031606578);
-                 break;
-             case "level2":
-                 break;
-             case "level3":
-                 break;
-             case "level4":
-                 break;
-             case "level5":
-                 break;
-             default:
-                 break; 
-         }*/
     }
     public bool contains(Card other)
     {
@@ -170,6 +154,7 @@ public class Deck : MonoBehaviour
         }
         else
         {
+            gm.GetComponent<GameManager>().passThroughDeck(); 
             for (int i = 0; i < drewCards.Count; i++)
             {
                 cards.Add(drewCards.ElementAt(i));

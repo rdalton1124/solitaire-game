@@ -2,25 +2,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class GameManager : MonoBehaviour
 {
     static public  GameObject deck, foundation, tableau;
     public GameObject winner, btns, strt; 
     static Card tempCard;
+    public Text scoreTxt, timeTxt;
     static List<Card> tempCards = new List<Card>(); 
     static bool cardSet = false;
     bool gameWon = false;
+    int t = 0;
+    int time; 
+    int score;
+    int finalTime; 
     void Start()
     {
         deck = GameObject.Find("Deck");
         foundation = GameObject.Find("foundation");
         tableau = GameObject.Find("runs");
-        winner.SetActive(false); 
+        winner.SetActive(false);
+        score = 0;
+        scoreTxt.text = "Score: 0";
+        timeTxt.gameObject.SetActive(false);
+        t = 0; 
+    }
+    public void remove20Points()
+    {
+        if (score >= 20)
+            score -= 20;
+        else
+            score = 0;
+
+        scoreTxt.text = "Score: " + score.ToString(); 
+    }
+    public void add3Points()
+    {
+        score += 3;
+        scoreTxt.text = "Score: " + score.ToString(); 
+    }
+    public void add5Points()
+    {
+        score += 5;
+        scoreTxt.text = "Score: " + score.ToString(); 
+    }
+    public void add10Points()
+    {
+        score += 10;
+        scoreTxt.text = "Score: " + score.ToString(); 
+    }
+    public void passThroughDeck()
+    {
+        if (score > 100)
+            score -= 100;
+        else
+            score = 0;
+
+        scoreTxt.text = "Score: " + score.ToString(); 
     }
     public void startLevel()
     {
-     strt.SetActive(false);
+      strt.SetActive(false);
       switch(SceneManager.GetActiveScene().name)
       {
           case "level1":
@@ -37,6 +81,11 @@ public class GameManager : MonoBehaviour
           default:
               break; 
       }
+        score = 0;
+        scoreTxt.text = "Score: " + score.ToString();
+        time = 0;
+        timeTxt.gameObject.SetActive(true); 
+        timeTxt.text = "Time: " + time.ToString(); 
     }
     void deal()
     {
@@ -44,16 +93,38 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        t++;
+        if(t % 60 == 0)
+        {
+            time++;
+            timeTxt.text = "Time: " + time.ToString(); 
+        }
+        if (t % 600 == 0)
+        {
+            if (score >= 2)
+                score -= 2;
+            else
+                score = 0;
+
+            scoreTxt.text = "Score: " + score.ToString();
+            //t = 0;
+        }
         bool b = true;
         for(int i = 0; i < 4; i ++)
         {
             if (foundation.transform.GetChild(i).GetComponent<foundation_stack>().getSize() != 13)
                 b = false; 
         }
-        if(b)
+        if(b && !winner.activeSelf)
         {
             winner.SetActive(true);
-            btns.SetActive(false); 
+            btns.SetActive(false);
+            timeTxt.gameObject.SetActive(false);
+            scoreTxt.gameObject.SetActive(false);
+            finalTime = time;
+            score += (int)700000 / finalTime;
+            winner.transform.GetChild(0).gameObject.GetComponent<Text>().text = "\t\t You've won \nFinal Score: " + score.ToString() + "\n Final Time: " + finalTime.ToString();
+
         }
     }
     public static Card getTempCard()

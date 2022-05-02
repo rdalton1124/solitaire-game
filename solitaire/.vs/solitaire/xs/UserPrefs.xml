@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
       <File FileName="Assets/Scripts/Deck.cs" Line="84" Column="6" />
-      <File FileName="Assets/Scripts/foundation_stack.cs" Line="30" Column="51" />
+      <File FileName="Assets/Scripts/foundation_stack.cs" />
       <File FileName="Assets/Scripts/column.cs" />
       <File FileName="Assets/Scripts/MainMenu.cs" />
       <File FileName="Assets/Scripts/GameManager.cs" Line="21" Column="12" />

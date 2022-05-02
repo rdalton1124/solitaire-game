@@ -7,6 +7,7 @@ public class foundation_stack : MonoBehaviour
 {
     public GameObject deck;
     List<GameObject> stack = new List<GameObject>();
+    public GameObject gm; 
     private void OnMouseDown()
     {
         if (GameManager.isTempCardSet())
@@ -46,14 +47,15 @@ public class foundation_stack : MonoBehaviour
             GameManager.moveTempCard();
             stack.Add(card);
             stack.ElementAt(stack.Count - 1).transform.parent = this.transform;
+            gm.GetComponent<GameManager>().add10Points();
         }
         else if (stack.Count >= 1 && card.GetComponent<Card>().canStackOnFoundation(stack.ElementAt(stack.Count - 1).GetComponent<Card>()))
         {
             stack.Add(card);
             GameManager.moveTempCard();
             stack.ElementAt(stack.Count - 1).transform.parent = this.transform;
+            gm.GetComponent<GameManager>().add10Points(); 
         }
-
         if (stack.Count != 0)
         {
             stack.ElementAt(stack.Count - 1).transform.position = this.transform.position;
