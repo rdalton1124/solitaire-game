@@ -72,10 +72,13 @@ public class GameManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
       {
           case "level1":
+                deck.GetComponent<Deck>().deal(-53120261);
+              break; 
           case "level2":
               deck.GetComponent<Deck>().deal(1031606578);
               break;
           case "level3":
+                deck.GetComponent<Deck>().deal(771523812);
               break;
           case "level4":
               break;
@@ -139,7 +142,10 @@ public class GameManager : MonoBehaviour
                         loseSequence();
                     break;
                 case "level3":
-
+                    if (score >= 2000)
+                        winSequence();
+                    else
+                        loseSequence(); 
                     break;
                 case "level4":
 
@@ -150,6 +156,26 @@ public class GameManager : MonoBehaviour
                 default:
                     break;
             }
+        }
+    }
+    public void nextLevel()
+    {
+        switch(SceneManager.GetActiveScene().name)
+        {
+            case "level1":
+                SceneManager.LoadScene("level2");
+                break;
+            case "level2":
+                SceneManager.LoadScene("level3");
+                break;
+            case "level3":
+                SceneManager.LoadScene("level4");
+                break;
+            case "level4":
+                SceneManager.LoadScene("level5");
+                break;
+            default:
+                break; 
         }
     }
     void loseSequence()
@@ -170,7 +196,7 @@ public class GameManager : MonoBehaviour
         scoreTxt.gameObject.SetActive(false);
         finalTime = time;
         score += (int)700000 / finalTime;
-        winner.transform.GetChild(0).gameObject.GetComponent<Text>().text = "\t  You've won \nFinal Score: " + score.ToString() + "\n Final Time: " + finalTime.ToString();
+        winner.transform.GetChild(0).gameObject.GetComponent<Text>().text = "\t You've won \nFinal Score: " + score.ToString() + "\n Final Time: " + finalTime.ToString();
     }
     public static Card getTempCard()
     {
