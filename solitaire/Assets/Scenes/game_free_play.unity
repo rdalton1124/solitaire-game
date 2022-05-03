@@ -1380,7 +1380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &737712482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 2635847657534102507, guid: 12980321f0fcd4219bfead2ca57deda1, type: 3}
-  gm: {fileID: 0}
+  gm: {fileID: 304563306}
   cards: []
   drewCards: []
   bSprite: {fileID: 21300000, guid: fd25a723e22b44c5682a05c146631b44, type: 3}
@@ -2380,7 +2380,7 @@ MonoBehaviour:
       - m_Target: {fileID: 755430092}
         m_TargetAssemblyTypeName: Deck, Assembly-CSharp
         m_MethodName: deal
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
